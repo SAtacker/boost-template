@@ -13,16 +13,6 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Boost)
 
-#if(NOT Boost_POPULATED)
-
-#  message(STATUS "Fetching Boost")
-#  FetchContent_Populate(Boost)
-
-#  message(STATUS "Configuring Boost")
-#  add_subdirectory(${Boost_SOURCE_DIR} ${Boost_BINARY_DIR} EXCLUDE_FROM_ALL)
-
-#endif()
-
-include_directories(${Boost_INCLUDE_DIR})
 add_executable(boost-example src/main.cpp)
 
+target_link_libraries(boost-example PRIVATE Boost::lambda)
